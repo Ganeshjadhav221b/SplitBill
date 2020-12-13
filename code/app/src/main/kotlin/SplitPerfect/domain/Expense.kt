@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -13,8 +14,8 @@ class Expense(
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = EXPENSE_SEQUENCE)
     val Id: Long,
     val name: String,
-    var deletion_timestamp: Date,
-    var payment_timestamp: Date,
+    var deletion_timestamp: LocalDateTime?,
+    var payment_timestamp: LocalDateTime,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName

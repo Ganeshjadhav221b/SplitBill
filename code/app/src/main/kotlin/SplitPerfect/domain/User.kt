@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -15,7 +16,7 @@ class User(
     var name: String,
     var email: String,
     var balance: Long,
-    var deletion_timestamp: Date,
+    var deletion_timestamp: LocalDateTime?,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName
@@ -30,6 +31,7 @@ class User(
     var groups: Set<Groups>
 
 ) {
+    constructor():this(1,"","",0,null,setOf<Groups>())
     companion object {
         const val USER_SEQUENCE: String = "USER_SEQUENCE"
     }

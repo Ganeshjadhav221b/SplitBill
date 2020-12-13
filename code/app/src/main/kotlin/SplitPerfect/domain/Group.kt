@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -17,7 +18,7 @@ class Groups(
     val Id: Long,
     var name: String,
     var description: String,
-    var deletion_timestamp: Date
+    var deletion_timestamp: LocalDateTime
 
 ) {
     companion object {

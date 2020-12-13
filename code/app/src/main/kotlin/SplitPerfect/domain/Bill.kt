@@ -1,6 +1,6 @@
 package SplitPerfect.domain
 
-import java.util.*
+import java.time.LocalDateTime
 import javax.persistence.*
 
 
@@ -16,8 +16,8 @@ class Bill(
     val total_balance: Long,
     val total_expenditure: Long = 0,
     val description: String,
-    var deletion_timestamp: Date,
-    var creation_timestamp: Date,
+    var deletion_timestamp: LocalDateTime?,
+    var creation_timestamp: LocalDateTime,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName
@@ -27,7 +27,13 @@ class Bill(
     @JoinColumn(name = "fk_group_bill")
     var group: Groups?
 ) {
+
+    constructor() : this(
+        0, 0, 0, 0, "",
+        null, LocalDateTime.now(),null)
+
+
     companion object {
-        const val BILL_SEQUENCE: String = "BILL_SEQUENCE"
-    }
+            const val BILL_SEQUENCE: String = "BILL_SEQUENCE"
+        }
 }

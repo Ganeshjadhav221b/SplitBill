@@ -2,26 +2,48 @@ package SplitPerfect.controllers
 
 import SplitPerfect.constants.ApplicationConstants.Companion.BASE_USER_URL
 import SplitPerfect.domain.User
-import SplitPerfect.services.UserService
+import SplitPerfect.services.interfaces.IUserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = [BASE_USER_URL])
-class UserController(@Autowired val userService: UserService) {
+class UserController(@Autowired val userService: IUserService) {
     @RequestMapping("/")
     fun greet(): String {
         return "Hello wolrd!"
     }
 
-    //Example ->http://localhost:8080/api/v1/user/1
-    @GetMapping("/{name}")
-    fun findById(@PathVariable name: String): ResponseEntity<List<User>?> {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(name))
+    //Example ->http://localhost:8080/api/v1/users/initials/gan
+    @GetMapping("/initials/{name}")
+    fun findByInitials(@PathVariable name: String): ResponseEntity<List<User>?> {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findByInitials(name))
+    }
+
+    //Example ->http://localhost:8080/api/v1/users/1
+    @GetMapping("/{id}")
+    fun findById(@PathVariable id: Long): ResponseEntity<User?> {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id))
+    }
+
+    //Example ->http://localhost:8080/api/v1/users/create
+    @PostMapping(value = ["/create"],consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun addUser(@RequestBody user: User): ResponseEntity<Long?> {
+        return ResponseEntity.ok(userService.addUser(user)?.Id)
+    }
+
+    //Example ->http://localhost:8080/api/v1/users/update
+    @PutMapping(value = ["/update"],consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun updateUser(@RequestBody user: User): ResponseEntity<Boolean> {
+        return ResponseEntity.ok(userService.updateUser(user))
+    }
+
+    //Example ->http://localhost:8080/api/v1/users/delete/1
+    @DeleteMapping("/delete/{id}")
+    fun deleteUser(@PathVariable id: Long): ResponseEntity<Boolean> {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(id))
     }
 }
