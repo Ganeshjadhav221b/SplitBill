@@ -6,16 +6,16 @@ import javax.persistence.*
 
 @Entity
 @Table
-class BALANCESHEET(
+class BalanceSheet(
     //This table maintains relation between 2 users.
     @Id
     @SequenceGenerator(
-        name = BALANCESHEET.BALANCE_SHEET_SEQUENCE,
-        sequenceName = BALANCESHEET.BALANCE_SHEET_SEQUENCE,
+        name = BalanceSheet.BALANCE_SHEET_SEQUENCE,
+        sequenceName = BalanceSheet.BALANCE_SHEET_SEQUENCE,
         initialValue = 1,
         allocationSize = 1
     )
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = BALANCESHEET.BALANCE_SHEET_SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = BalanceSheet.BALANCE_SHEET_SEQUENCE)
     val Id: Long,
     var timestamp: Date,
 
