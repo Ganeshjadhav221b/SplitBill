@@ -9,3 +9,5 @@ insert into user(id,name,balance,email,deletion_timestamp) values (USER_SEQUENCE
 
 
 insert into bill(id,creation_timestamp,deletion_timestamp,description,number,total_balance,total_expenditure,fk_group_bill) values (BILL_SEQUENCE.nextval,CURRENT_TIMESTAMP(),null,'desc',0,0,0,1)
+
+insert into expense values (EXPENSE_SEQUENCE.nextval,'n1',CURRENT_TIMESTAMP(),1,1)
