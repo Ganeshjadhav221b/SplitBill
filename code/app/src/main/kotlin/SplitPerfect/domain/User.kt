@@ -15,7 +15,7 @@ class User(
     var name: String,
     var email: String,
     var balance: Long,
-    var deletion_date: Date,
+    var deletion_timestamp: Date,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName

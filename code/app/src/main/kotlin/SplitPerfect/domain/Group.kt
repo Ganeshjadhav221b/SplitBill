@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -16,7 +17,7 @@ class Groups(
     val Id: Long,
     var name: String,
     var description: String,
-    //var deletion_date: Date
+    var deletion_timestamp: Date
 
 ) {
     companion object {

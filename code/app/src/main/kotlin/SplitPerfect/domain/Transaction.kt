@@ -6,19 +6,19 @@ import javax.persistence.*
 
 @Entity
 @Table
-class TRANSACTION(
+class Transaction(
     //This table maintains transaction record between 2 users, against a bill.
     @Id
     @SequenceGenerator(
-        name = TRANSACTION.TRANSACTION_SEQUENCE,
-        sequenceName = TRANSACTION.TRANSACTION_SEQUENCE,
+        name = Transaction.TRANSACTION_SEQUENCE,
+        sequenceName = Transaction.TRANSACTION_SEQUENCE,
         initialValue = 1,
         allocationSize = 1
     )
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = TRANSACTION.TRANSACTION_SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = Transaction.TRANSACTION_SEQUENCE)
     val Id: Long,
     var description : String,
-
+    var transaction_timestamp:Date,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne

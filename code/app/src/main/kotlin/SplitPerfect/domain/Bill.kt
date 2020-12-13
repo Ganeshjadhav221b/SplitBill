@@ -16,8 +16,8 @@ class Bill(
     val total_balance: Long,
     val total_expenditure: Long = 0,
     val description: String,
-    var deletion_date: Date,
-    var creation_date: Date,
+    var deletion_timestamp: Date,
+    var creation_timestamp: Date,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName

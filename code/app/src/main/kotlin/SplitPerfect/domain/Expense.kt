@@ -13,8 +13,8 @@ class Expense(
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = EXPENSE_SEQUENCE)
     val Id: Long,
     val name: String,
-    var deletion_date: Date,
-    var payment_date: Date,
+    var deletion_timestamp: Date,
+    var payment_timestamp: Date,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName
