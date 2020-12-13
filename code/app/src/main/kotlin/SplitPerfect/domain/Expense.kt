@@ -12,8 +12,8 @@ class Expense(
     @Id
     @SequenceGenerator(name = EXPENSE_SEQUENCE, sequenceName = EXPENSE_SEQUENCE, initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = EXPENSE_SEQUENCE)
-    val Id: Long,
-    val name: String,
+    var Id: Long,
+    var name: String,
     var deletion_timestamp: LocalDateTime?,
     var payment_timestamp: LocalDateTime,
 

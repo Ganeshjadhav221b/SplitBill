@@ -13,6 +13,13 @@ interface UserRepository : JpaRepository<User, Long> {
     @Query("select * from user where name like ?1%", nativeQuery = true)
     fun findUserByInitials(initials: String): List<User>?
 
+
+    @Query("select top 1 * from user where id = ?1 and deletion_timestamp is  null", nativeQuery = true)
+    fun getUser(id: Long): User?
+
+    @Query("select * from user where deletion_timestamp is null", nativeQuery = true)
+    fun getAllUsers(): List<User>?
+
     @Transactional
     @Modifying
     @Query("update user set balance = ?1, name = ?2, email = ?3 where id = ?4", nativeQuery = true)

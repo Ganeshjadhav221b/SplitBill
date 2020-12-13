@@ -6,3 +6,6 @@ insert into groups(id,description,name,deletion_timestamp) values (GROUP_SEQUENC
 --select * from groups
 
 insert into user(id,name,balance,email,deletion_timestamp) values (USER_SEQUENCE.nextval,'ganesh',0,'ganesh@gmail.com',null)
+
+
+insert into bill(id,creation_timestamp,deletion_timestamp,description,number,total_balance,total_expenditure,fk_group_bill) values (BILL_SEQUENCE.nextval,CURRENT_TIMESTAMP(),null,'desc',0,0,0,1)

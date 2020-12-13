@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table
-class Groups(
+data class Groups(
     @Id
     @SequenceGenerator(
         name = Groups.GROUP_SEQUENCE,
@@ -15,12 +15,21 @@ class Groups(
         allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = GROUP_SEQUENCE)
-    val Id: Long,
+    var Id: Long,
     var name: String,
     var description: String,
-    var deletion_timestamp: LocalDateTime
+    var deletion_timestamp: LocalDateTime?,
+
+//    @OneToMany(
+//    mappedBy = "group",
+//    cascade = arrayOf(CascadeType.ALL),
+//    )
+//    var bills: MutableList<Bill>
+
 
 ) {
+    constructor():this(1,"","",null)
+
     companion object {
         const val GROUP_SEQUENCE: String = "GROUP_SEQUENCE"
     }

@@ -16,7 +16,7 @@ class Transaction(
         allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = Transaction.TRANSACTION_SEQUENCE)
-    val Id: Long,
+    var Id: Long,
     var description : String,
     var transaction_timestamp:Date,
 

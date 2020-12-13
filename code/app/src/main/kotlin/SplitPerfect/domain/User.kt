@@ -1,22 +1,21 @@
 package SplitPerfect.domain
 
 import java.time.LocalDateTime
-import java.util.*
 import javax.persistence.*
 
 
 @Entity
 @Table
-class User(
+data class User(
 
     @Id
     @SequenceGenerator(name = USER_SEQUENCE, sequenceName = USER_SEQUENCE, initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = USER_SEQUENCE)
-    val Id: Long,
-    var name: String,
-    var email: String,
-    var balance: Long,
-    var deletion_timestamp: LocalDateTime?,
+    var Id: Long = 0,
+    var name: String = "",
+    var email: String = "",
+    var balance: Long = 0,
+    var deletion_timestamp: LocalDateTime? = null,
 
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName
@@ -28,10 +27,15 @@ class User(
         joinColumns = arrayOf(JoinColumn(name = "fk_group_user")),
         inverseJoinColumns = arrayOf(JoinColumn(name = "fk_user_group"))
     )
-    var groups: Set<Groups>
+    var groups: MutableList<Groups> = mutableListOf<Groups>(),
+
+    @OneToMany(
+        mappedBy = "user",
+        cascade = arrayOf(CascadeType.ALL),
+    )
+    var items: MutableList<Expense> = mutableListOf<Expense>()
 
 ) {
-    constructor():this(1,"","",0,null,setOf<Groups>())
     companion object {
         const val USER_SEQUENCE: String = "USER_SEQUENCE"
     }

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping(value = [BASE_USER_URL])
 class UserController(@Autowired val userService: IUserService) {
-    @RequestMapping("/")
-    fun greet(): String {
-        return "Hello wolrd!"
-    }
+
 
     //Example ->http://localhost:8080/api/v1/users/initials/gan
     @GetMapping("/initials/{name}")
@@ -26,7 +23,13 @@ class UserController(@Autowired val userService: IUserService) {
     //Example ->http://localhost:8080/api/v1/users/1
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<User?> {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.findById(id))
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(id))
+    }
+
+    //Example ->http://localhost:8080/api/v1/users/
+    @GetMapping("/")
+    fun getAllUsers(@PathVariable id: Long): ResponseEntity<List<User>?> {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers())
     }
 
     //Example ->http://localhost:8080/api/v1/users/create
@@ -36,12 +39,12 @@ class UserController(@Autowired val userService: IUserService) {
     }
 
     //Example ->http://localhost:8080/api/v1/users/update
-    @PutMapping(value = ["/update"],consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PutMapping(value = ["/update"])
     fun updateUser(@RequestBody user: User): ResponseEntity<Boolean> {
         return ResponseEntity.ok(userService.updateUser(user))
     }
 
-    //Example ->http://localhost:8080/api/v1/users/delete/1
+    //Example ->http://localhost:8080/api/v1/user/delete/1
     @DeleteMapping("/delete/{id}")
     fun deleteUser(@PathVariable id: Long): ResponseEntity<Boolean> {
         return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(id))
