@@ -15,6 +15,7 @@ Milestone 2 & 5.1 -> http://localhost:8080/api/v1/user/{operation}, where operat
 Milestone 3,5.2,6.1,8.3-> http://localhost:8080/api/v1/bill/{operation}, where operation = [`create`,`read`,`update`]<br>
 Milestone 4 & 5.3 -> to get net user balance ->http://localhost:8080/api/v1/user/userbalance/{id}, where id is userid<br>
 Milestone 5.4 to get individual balance ->http://localhost:8080/api/v1/user/userbalancesheet/{id}, where id is usedid<br>
+Milestone 6 to get transactions against a bill ->http://localhost:8080/api/v1/transaction/{id}, where id is billId<br>
 Milestone 9.1 -> http://localhost:8080/api/v1/group/{operation}, where operation = [`create`,`update`,`delete`,`read`]<br>
 Milestone 9.2 -> http://localhost:8080/api/v1/usergroup<br>
 
