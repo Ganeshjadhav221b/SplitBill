@@ -22,4 +22,10 @@ class TransactionController(@Autowired val transactionService: ITransactionServi
     fun addTransaction(@RequestBody transaction: Transaction): ResponseEntity<Long?> {
         return ResponseEntity.ok(transactionService.addTransaction(transaction,updatePayer = true)?.Id)
     }
+
+    //Example ->http://localhost:8080/api/v1/transaction/1
+    @GetMapping("/{id}")
+    fun getUserBalance(@PathVariable id: Long): ResponseEntity<List<Transaction>?> {
+        return ResponseEntity.status(HttpStatus.OK).body(transactionService.getTransactionsForBill(id))
+    }
 }

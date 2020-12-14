@@ -41,6 +41,10 @@ class TransactionService(
         return transactionRepository.save(transaction)
     }
 
+    override fun getTransactionsForBill(id: Long): List<Transaction>? {
+        return transactionRepository.getTransactionsByBillId(id)
+    }
+
     private fun updateBillBalance(transaction: Transaction): Boolean {
         val bill: Bill? = transaction.bill
         if (bill == null)
