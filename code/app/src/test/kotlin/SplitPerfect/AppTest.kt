@@ -3,7 +3,16 @@
  */
 package SplitPerfect
 
+import org.junit.jupiter.api.BeforeEach
+
 
 class AppTest {
+
+    @BeforeEach
+    fun initialize() {
+    }
+
+
+
 
 }

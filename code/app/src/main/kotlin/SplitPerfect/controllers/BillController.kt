@@ -43,7 +43,6 @@ class BillController(@Autowired val billService: IBillService) {
     //Example ->http://localhost:8080/api/v1/bill/update
     @PutMapping(value = ["/update"],consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun updateBill(@RequestBody bill: Bill): ResponseEntity<Boolean> {
-        println("Here: ${bill.Id},$bill")
         return ResponseEntity.ok(billService.updateBill(bill))
     }
 

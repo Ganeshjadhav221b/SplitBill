@@ -7,6 +7,7 @@ import SplitPerfect.services.implementations.BalanceSheetService
 import SplitPerfect.services.interfaces.IBalanceSheetService
 import SplitPerfect.services.interfaces.IUserService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -26,7 +27,7 @@ class UserController(@Autowired val userService: IUserService, @Autowired val ba
 
     //Example ->http://localhost:8080/api/v1/user/1
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): ResponseEntity<User?> {
+    fun getUser(@PathVariable id: Long): ResponseEntity<User?> {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getUser(id))
     }
 
