@@ -17,4 +17,10 @@ interface BalanceSheetRepository : JpaRepository<BalanceSheet, Long> {
 
     @Query("select * from balance_sheet where (fk_user_1_balance_sheet = ?1 and fk_user_2_balance_sheet = ?2)", nativeQuery = true)
     fun findBalanceSheet(user1: Long, user2:Long): BalanceSheet?
+
+    @Query("select * from balance_sheet where fk_user_1_balance_sheet = ?1", nativeQuery = true)
+    fun findBalanceSheetForUser_1(userId:Long): List<BalanceSheet>?
+
+    @Query("select * from balance_sheet where fk_user_2_balance_sheet = ?1", nativeQuery = true)
+    fun findBalanceSheetForUser_2(userId:Long): List<BalanceSheet>?
 }

@@ -3,6 +3,7 @@ package SplitPerfect.services.implementations
 import SplitPerfect.domain.*
 import SplitPerfect.reposoitories.ExpenseRepository
 import SplitPerfect.services.interfaces.IExpenseService
+import SplitPerfect.services.interfaces.ITransactionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -14,8 +15,7 @@ class ExpenseService(
     @Autowired val billService: BillService,
     @Autowired val userGroupService: UserGroupService,
     @Autowired val userService: UserService,
-    @Autowired val balanceSheetService: BalanceSheetService,
-    @Autowired val transactionService: TransactionService
+    @Autowired val transactionService: ITransactionService
 ) : IExpenseService {
 
 
@@ -56,7 +56,6 @@ class ExpenseService(
 
         //Positive balance indicates that payer has to get the amount back
         payer.balance += expense.amount-individualContribution
-        userService.updateUser(payer)
 
         var amountDueTotal: Long = 0
         if (usersFromGroup != null) {
@@ -65,11 +64,8 @@ class ExpenseService(
                 if (user !== payer) {
                     //Negative balance indicates the user has to yet return due
                     amountDueTotal += individualContribution
-                    user.balance -= individualContribution
-
-                    userService.updateUser(user)
+                    //user.balance -= individualContribution
                     this.updateTransactions(payer,user,individualContribution,bill)
-                    this.updateBalanceSheet(payer, user, individualContribution)
                 }
             }
         }
@@ -86,40 +82,7 @@ class ExpenseService(
         transaction.user1 = payer
         transaction.user2 = user
         transaction.amount = amount
-        transactionService.addTransaction(transaction)
-    }
-
-
-    private fun updateBalanceSheet(payer: User, user2: User, amount: Long) {
-        //Check if balancesheet already exists, if it does, update it.
-        var balanceSheet: BalanceSheet? = BalanceSheet()
-
-        //Since we store single column for balance. we need to know who owes whom.
-        var payerFlag:Boolean = true
-        balanceSheet= balanceSheetService.findBalanceSheet(payer.Id,user2.Id)
-        if(balanceSheet == null)
-        {
-            balanceSheet= balanceSheetService.findBalanceSheet(user2.Id,payer.Id)
-            payerFlag = false
-        }
-
-        if(balanceSheet != null)
-        {
-            if(payerFlag){
-                balanceSheet.balance += amount
-            }
-            else
-                balanceSheet.balance -= amount
-            balanceSheetService.updateBalanceSheet(balanceSheet)
-            return
-        }
-        balanceSheet = BalanceSheet()
-        balanceSheet.user1 = payer
-        balanceSheet.user2 = user2
-        //Positive amount means user1 has to yet recieve amount from user2
-        balanceSheet.balance = amount
-
-        balanceSheetService.addBalanceSheet(balanceSheet)
+        transactionService.addTransaction(transaction,false)
     }
 
 

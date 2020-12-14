@@ -20,6 +20,6 @@ class TransactionController(@Autowired val transactionService: ITransactionServi
     //Example ->http://localhost:8080/api/v1/transaction/create
     @PostMapping(value = ["/create"], consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun addTransaction(@RequestBody transaction: Transaction): ResponseEntity<Long?> {
-        return ResponseEntity.ok(transactionService.addTransaction(transaction)?.Id)
+        return ResponseEntity.ok(transactionService.addTransaction(transaction,updatePayer = true)?.Id)
     }
 }

@@ -1,0 +1,48 @@
+
+Balance_sheet
+{
+    "description":"desc1",
+    "balance":0,
+    "user1":{"id":1},
+    "user2":{"id":2}
+}
+Bill-
+{
+    "id":1,
+    "number":19,
+    "description":"11desc34",
+    "total_balance":10,
+    "total_expenditure":10,
+    "groups":{"id":1}
+  }
+Expense
+{
+    "name":"lodge",
+    "amount":1200,
+    "user":{"id":2},
+    "bill":{"id":1}
+}
+Groups-
+{
+    "name":"hunters",
+    "description":"tracking expenses at kedarntath trip"
+}
+
+Transaction-
+{
+    "id":1,
+    "amount":100,
+    "bill":{"id":1},
+    "user1":{"id":2},
+    "user2":{"id":1}
+  }
+
+User-
+{"name":"Ramesh","balance":0,"email":"sdad@zsda.comm"}
+
+
+UserGroup-
+{
+    "user":{"id":1},
+    "groups":1
+}

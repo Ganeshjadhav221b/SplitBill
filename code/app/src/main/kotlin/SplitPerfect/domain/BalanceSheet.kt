@@ -25,14 +25,14 @@ class BalanceSheet(
     // If balance < 0 means user2 has to get Rs. x from user1
     var balance: Long = 0,
 
-    //For relation-user performs pays/repays against expenses.
+    //For relation-user pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_1_balance_sheet")
+    @JoinColumn(name = "fk_user_1_balance_sheet", insertable = true)
     var user1: User? = null,
 
-    //For relation-user performs pays/repays against expenses.
+    //For relation-user pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_2_balance_sheet")
+    @JoinColumn(name = "fk_user_2_balance_sheet", insertable = true)
     var user2: User? = null,
 
     ) {

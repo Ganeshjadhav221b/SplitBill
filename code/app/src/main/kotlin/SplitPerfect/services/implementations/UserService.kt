@@ -64,4 +64,17 @@ class UserService(@Autowired val userRepository: UserRepository): IUserService {
         return false
     }
 
+    override fun getUserBalance(id: Long): String {
+
+        val amount :Long? = userRepository.getBalance(id)
+        if(amount == null)
+            return "User does not exist or is deleted"
+        if(amount<0)
+            return "User owes Rs. ${amount*-1} only to other users"
+        else if(amount == 0L)
+            return "user has Rs. 0 only balance"
+        else
+            return "Others owe Rs. $amount only to the user"
+    }
+
 }

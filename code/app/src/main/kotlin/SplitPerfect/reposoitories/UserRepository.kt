@@ -30,5 +30,8 @@ interface UserRepository : JpaRepository<User, Long> {
     @Query("update user set deletion_timestamp = CURRENT_TIMESTAMP() where id = ?1", nativeQuery = true)
     fun delete(id:Long): Int
 
+    @Query("select balance from user where deletion_timestamp is null and id = ?1", nativeQuery = true)
+    fun getBalance(id: Long): Long?
+
 
 }

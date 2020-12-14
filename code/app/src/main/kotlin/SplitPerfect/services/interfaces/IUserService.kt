@@ -15,4 +15,5 @@ interface IUserService{
     fun addUser(user: User): User?
     fun updateUser(user: User): Boolean
     fun deleteUser(id:Long): Boolean
+    abstract fun getUserBalance(id: Long): String
 }
