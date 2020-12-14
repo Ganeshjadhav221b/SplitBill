@@ -6,7 +6,7 @@ Visit the problem statement [here](https://git.hashedin.com/ganesh.jadhav/kotlin
 
 ## NOTE
 <b>Entity diagram </b>
-Balance(in user entity) can be negative indicating the user has to pay money back(due). Positive balance for an user means he recieve the amount, yet.
+Balance(in user entity) can be negative indicating the user has to pay money back(due). Positive balance for an user means he hasnt recieved the amount, yet.
 
 
 <b>Milestones</b>
