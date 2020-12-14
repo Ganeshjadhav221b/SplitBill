@@ -10,13 +10,13 @@ Balance(in user entity) can be negative indicating the user has to pay money bac
 
 
 <b>Milestones</b>
-Milestone 1 -> added in code/domain
-Milestone 2 & 5.1 -> http://localhost:8080/api/v1/user/{operation}, where operation = [`create`,`update`,`delete`,`read`]
-Milestone 3,5.2,6.1,8.3-> http://localhost:8080/api/v1/bill/{operation}, where operation = [`create`,`read`,`update`]
-Milestone 4 & 5.3 -> to get net user balance ->http://localhost:8080/api/v1/user/userbalance/{id}, where id is userid
-Milestone 5.4 to get individual balance ->http://localhost:8080/api/v1/user/userbalancesheet/{id}, where id is usedid
-Milestone 9.1 -> http://localhost:8080/api/v1/group/{operation}, where operation = [`create`,`update`,`delete`,`read`]
-Milestone 9.2 -> http://localhost:8080/api/v1/usergroup
+Milestone 1 -> added in code/domain<br>
+Milestone 2 & 5.1 -> http://localhost:8080/api/v1/user/{operation}, where operation = [`create`,`update`,`delete`,`read`]<br>
+Milestone 3,5.2,6.1,8.3-> http://localhost:8080/api/v1/bill/{operation}, where operation = [`create`,`read`,`update`]<br>
+Milestone 4 & 5.3 -> to get net user balance ->http://localhost:8080/api/v1/user/userbalance/{id}, where id is userid<br>
+Milestone 5.4 to get individual balance ->http://localhost:8080/api/v1/user/userbalancesheet/{id}, where id is usedid<br>
+Milestone 9.1 -> http://localhost:8080/api/v1/group/{operation}, where operation = [`create`,`update`,`delete`,`read`]<br>
+Milestone 9.2 -> http://localhost:8080/api/v1/usergroup<br>
 
 <b>Soft delete</b>
 Soft delete is done via deletion_date column which indicates date deleted if it's deleted, would be null otherwise. ([reference](https://stackoverflow.com/a/68338/7467083))
