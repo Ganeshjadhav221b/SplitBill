@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -16,25 +17,25 @@ class Transaction(
         allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = Transaction.TRANSACTION_SEQUENCE)
-    var Id: Long,
-    var description : String,
-    var transaction_timestamp:Date,
+    var Id: Long = 0 ,
+    var description : String = "",
+    var transaction_timestamp:LocalDateTime = LocalDateTime.now() ,
+    var amount :Long = 0,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_transaction_1")
-    var user1: User?,
+    @JoinColumn(name = "fk_user_1_transaction")
+    var user1: User? = null,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_transaction_2")
-    var user2: User?,
-
+    @JoinColumn(name = "fk_user_2_transaction")
+    var user2: User? = null,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_expense")
-    var bill: Bill?,
+    @JoinColumn(name = "fk_bill_transaction")
+    var bill: Bill? = null,
 
     ) {
     companion object {

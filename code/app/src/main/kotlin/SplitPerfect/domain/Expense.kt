@@ -12,6 +12,7 @@ class Expense(
     @SequenceGenerator(name = EXPENSE_SEQUENCE, sequenceName = EXPENSE_SEQUENCE, initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = EXPENSE_SEQUENCE)
     var Id: Long = 0,
+    var amount: Long = 0,
     var name: String = "",
     var payment_timestamp: LocalDateTime = LocalDateTime.now(),
 

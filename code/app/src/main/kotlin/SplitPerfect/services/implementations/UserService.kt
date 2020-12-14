@@ -1,5 +1,6 @@
 package SplitPerfect.services.implementations
 
+import SplitPerfect.domain.Groups
 import SplitPerfect.domain.User
 import SplitPerfect.reposoitories.UserRepository
 import SplitPerfect.services.interfaces.IUserService
@@ -13,18 +14,36 @@ class UserService(@Autowired val userRepository: UserRepository): IUserService {
 
     override fun findByInitials(name: String): List<User>? = userRepository.findUserByInitials(name)
 
-    //Incase if  deleted user wishes to restore(soft-deleted will also be included)
+    //Incase if  deleted user wishes to restore(soft-deleted users will also be included)
     fun findById(id: Long): User? = userRepository.findByIdOrNull(id)
 
-    override fun getUser(id: Long): User? = userRepository.getUser(id)
+    override fun getUser(id: Long): User?
+    {
+        try{
+            return userRepository.getUser(id)
+        }
+        catch (e:Exception)
+        {
+            println("Exception occured while fetching user: $e")
+        }
+        return null
+    }
 
-    override fun getAllUsers(): List<User>? = userRepository.getAllUsers()
+    override fun getAllUsers(): List<User>? {
+        try{
+            return userRepository.getAllUsers()
+        }
+        catch (e:Exception)
+        {
+            println("Exception occured while fetching users: $e")
+        }
+        return null
+    }
 
     override fun addUser(user: User): User? = userRepository.save(user)
 
     override fun updateUser(user: User): Boolean
     {
-        print("Here: ${user.Id}")
         if(this.getUser(user.Id) == null)
             return false
 
@@ -40,8 +59,9 @@ class UserService(@Autowired val userRepository: UserRepository): IUserService {
         }
         catch (e:Exception)
         {
-            println("Here: $e")
+            println("Exception occured while deleting user: $e")
         }
         return false
     }
+
 }

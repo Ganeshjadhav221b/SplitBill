@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -16,23 +17,23 @@ class BalanceSheet(
         allocationSize = 1
     )
     @GeneratedValue(strategy = GenerationType.TABLE, generator = BalanceSheet.BALANCE_SHEET_SEQUENCE)
-    val Id: Long,
-    var timestamp: Date,
+    val Id: Long = 0,
+    var timestamp: LocalDateTime = LocalDateTime.now() ,
 
     //If balance = x,
     // If balance > 0 means user1 has to get Rs. x from user2
     // If balance < 0 means user2 has to get Rs. x from user1
-    var balance: Long,
+    var balance: Long = 0,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
     @JoinColumn(name = "fk_user_balance_1")
-    var user1: User?,
+    var user1: User? = null,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
     @JoinColumn(name = "fk_user_balance_2")
-    var user2: User?,
+    var user2: User? = null,
 
     ) {
     companion object {

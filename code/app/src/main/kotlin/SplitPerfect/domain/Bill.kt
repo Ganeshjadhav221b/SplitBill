@@ -13,7 +13,7 @@ data  class Bill(
     var Id: Long,
     var number: Long,
     var total_balance: Long,
-    var total_expenditure: Long = 0,
+    var total_expenditure: Long,
     var description: String,
     var deletion_timestamp: LocalDateTime?,
     var creation_timestamp: LocalDateTime,
@@ -26,12 +26,6 @@ data  class Bill(
     @JoinColumn(name = "fk_group_bill")
     var group: Groups?,
 
-//
-//    @OneToMany(
-//        mappedBy = "bill",
-//        cascade = arrayOf(CascadeType.ALL),
-//    )
-//    var items: MutableList<Expense>
 ) {
 
     constructor() : this(

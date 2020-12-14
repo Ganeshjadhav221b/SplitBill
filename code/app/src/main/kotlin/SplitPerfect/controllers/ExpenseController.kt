@@ -3,6 +3,7 @@ package SplitPerfect.controllers
 import SplitPerfect.constants.ApplicationConstants
 import SplitPerfect.domain.Expense
 import SplitPerfect.services.implementations.ExpenseService
+import SplitPerfect.services.interfaces.IExpenseService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = [ApplicationConstants.BASE_EXPENSE_URL])
-class ExpenseController(@Autowired val expenseService: ExpenseService) {
+class ExpenseController(@Autowired val expenseService: IExpenseService) {
 
 
     //Example ->http://localhost:8080/api/v1/expense/1

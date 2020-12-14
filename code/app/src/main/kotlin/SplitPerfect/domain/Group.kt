@@ -20,12 +20,6 @@ data class Groups(
     var description: String,
     var deletion_timestamp: LocalDateTime?,
 
-//    @OneToMany(
-//    mappedBy = "group",
-//    cascade = arrayOf(CascadeType.ALL),
-//    )
-//    var bills: MutableList<Bill>
-
 
 ) {
     constructor():this(1,"","",null)

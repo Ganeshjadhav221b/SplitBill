@@ -1,5 +1,6 @@
 package SplitPerfect.domain
 
+import org.hibernate.engine.internal.Cascade
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -20,14 +21,6 @@ data class User(
     //Followiing the conventions for foreignKey->
     //FK_ForeignTableName_CurrentTableName
 
-    //For relation-user is part of group.
-    @ManyToMany
-    @JoinTable(
-        name = "user_group",
-        joinColumns = arrayOf(JoinColumn(name = "fk_group_user")),
-        inverseJoinColumns = arrayOf(JoinColumn(name = "fk_user_group"))
-    )
-    var groups: MutableList<Groups> = mutableListOf<Groups>(),
 
     @OneToMany(
         mappedBy = "user",

@@ -1,5 +1,6 @@
 package SplitPerfect.services.interfaces
 
+import SplitPerfect.domain.Groups
 import SplitPerfect.domain.User
 import SplitPerfect.reposoitories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
