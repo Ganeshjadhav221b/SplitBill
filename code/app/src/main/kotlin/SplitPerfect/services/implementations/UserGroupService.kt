@@ -16,7 +16,6 @@ class UserGroupService(@Autowired var userGroupRepository: UserGroupRepository,
 
     fun getAllUsersForGroup(groups:Long):List<User>? {
         var users: MutableList<User> = mutableListOf<User>()
-        //return userGroupRepository.findByGroups(groups)
         val userIds: List<Long>? = userGroupRepository.getAllUsersForGroup(groups)
         if (userIds == null)
             return null

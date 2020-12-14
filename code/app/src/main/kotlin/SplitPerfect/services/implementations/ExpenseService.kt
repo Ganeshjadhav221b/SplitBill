@@ -35,10 +35,6 @@ class ExpenseService(
         if (payer == null)
             return null
 
-        //Positive balance indicates that payer has to get the amount back
-        payer.balance = expense.amount
-        userService.updateUser(payer)
-
         //If group doesnt exist
         if (bill.group == null)
             return null
@@ -58,10 +54,14 @@ class ExpenseService(
 
         val individualContribution = expense.amount / numOfUsersInGroup!!
 
+        //Positive balance indicates that payer has to get the amount back
+        payer.balance += expense.amount-individualContribution
+        userService.updateUser(payer)
+
         var amountDueTotal: Long = 0
         if (usersFromGroup != null) {
             for (user in usersFromGroup) {
-                //Add everyone except the payer
+                //update everyone's dues except the payer
                 if (user !== payer) {
                     //Negative balance indicates the user has to yet return due
                     amountDueTotal += individualContribution
@@ -79,7 +79,7 @@ class ExpenseService(
         return true
     }
 
-    private fun updateTransactions(user:User,payer:User,amount:Long,bill: Bill) {
+    private fun updateTransactions(payer:User,user:User,amount:Long,bill: Bill) {
         //Add in transaction table
         var transaction: Transaction = Transaction()
         transaction.bill = bill
@@ -90,13 +90,36 @@ class ExpenseService(
     }
 
 
-    private fun updateBalanceSheet(user1: User, user2: User, amount: Long) {
-        var balanceSeet: BalanceSheet = BalanceSheet()
-        balanceSeet.user1 = user1
-        balanceSeet.user2 = user2
+    private fun updateBalanceSheet(payer: User, user2: User, amount: Long) {
+        //Check if balancesheet already exists, if it does, update it.
+        var balanceSheet: BalanceSheet? = BalanceSheet()
+
+        //Since we store single column for balance. we need to know who owes whom.
+        var payerFlag:Boolean = true
+        balanceSheet= balanceSheetService.findBalanceSheet(payer.Id,user2.Id)
+        if(balanceSheet == null)
+        {
+            balanceSheet= balanceSheetService.findBalanceSheet(user2.Id,payer.Id)
+            payerFlag = false
+        }
+
+        if(balanceSheet != null)
+        {
+            if(payerFlag){
+                balanceSheet.balance += amount
+            }
+            else
+                balanceSheet.balance -= amount
+            balanceSheetService.updateBalanceSheet(balanceSheet)
+            return
+        }
+        balanceSheet = BalanceSheet()
+        balanceSheet.user1 = payer
+        balanceSheet.user2 = user2
         //Positive amount means user1 has to yet recieve amount from user2
-        balanceSeet.balance = amount
-        balanceSheetService.addBalanceSheet(balanceSeet)
+        balanceSheet.balance = amount
+
+        balanceSheetService.addBalanceSheet(balanceSheet)
     }
 
 

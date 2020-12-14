@@ -12,5 +12,4 @@ interface UserGroupRepository:JpaRepository<UserGroup,Long> {
 
     @Query("select fk_user_usergroup from user_group where groups = ?1", nativeQuery = true)
     fun getAllUsersForGroup(groupId:Long): List<Long>?
-    //fun findByGroups(groups: Long): List<User>?
 }

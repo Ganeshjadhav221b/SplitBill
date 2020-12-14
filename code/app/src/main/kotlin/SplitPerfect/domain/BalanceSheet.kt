@@ -27,12 +27,12 @@ class BalanceSheet(
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_balance_1")
+    @JoinColumn(name = "fk_user_1_balance_sheet")
     var user1: User? = null,
 
     //For relation-user performs pays/repays against expenses.
     @OneToOne
-    @JoinColumn(name = "fk_user_balance_2")
+    @JoinColumn(name = "fk_user_2_balance_sheet")
     var user2: User? = null,
 
     ) {
