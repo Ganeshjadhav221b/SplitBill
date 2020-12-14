@@ -35,7 +35,7 @@ Find table strucuture with json examples [here](https://git.hashedin.com/ganesh.
 
 <b>Order of creation</b>
 1. users
-2. groups
+2. groups<br>
 2.1 user_groups
 3. bills
 4. expense
