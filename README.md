@@ -28,19 +28,21 @@ Find table strucuture with json examples [here](https://git.hashedin.com/ganesh.
 
 <b>Tables</b>
 1. A user has to first create account(stored in user table).
-2. When user pays against a bill(stored in bill table), it's an expense(stored in expense table).(bill table also keeps track of total expenditure and due/balance yet not settled).
-3. Step 2 is also saved in transaction table
-4. When user returns money that he owed, it's a transaction(stored in transaction table).
-5. For step 2 and 4, balancesheet is updated among 2 users(in balancesheet table) 
+2. A group is created(group table)
+3. user is added to group(usergroup table)
+4. When user pays against a bill(stored in bill table), it's an expense(stored in expense table).(bill table also keeps track of total expenditure and due/balance yet not settled).
+5. Step 4 is also saved in transaction table
+6. When user returns money that he owed, it's a transaction(stored in transaction table).
+7. For step 4 and 6, balancesheet is updated among 2 users(in balancesheet table) 
 
 <b>Order of creation</b>
-1. users
-2. groups<br>
-2.1 user_groups
-3. bills
-4. expense
-5. transaction
-6. balance_sheet
+1. users -> user info
+2. groups<br> ->group info
+2.1 user_groups ->Link between user and group
+3. bills ->Bill info
+4. expense -> All payments done against bill
+5. transaction ->History of all transactions
+6. balance_sheet ->Pending amount between users
 
 <b>Conventions followed</b>
 1. Foreign key-FK_ForeignTableName_CurrentTableName, example -> FK_Student_Department(meaning, in department entity, we're putting primary key of student as foreign key)
