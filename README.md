@@ -1,8 +1,8 @@
 # Split Bill
-Visit the problem statement [here](https://git.hashedin.com/ganesh.jadhav/kotlin-assignment-2/-/blob/master/metadata/SplitBill%20Assignment%20-%20To%20Share.pdf)
+Visit the problem statement [here](https://github.com/Ganeshjadhav221b/SplitBill/blob/master/metadata/SplitBill%20Assignment%20-%20To%20Share.pdf)
 
 ## ER Diagram
-![ER diagram for split bill](https://git.hashedin.com/ganesh.jadhav/kotlin-assignment-2/-/raw/master/metadata/SplitPerfect_ER_Diagram.png)
+![ER diagram for split bill](https://github.com/Ganeshjadhav221b/SplitBill/blob/master/metadata/SplitPerfect_ER_Diagram.png)
 
 ## NOTE
 <b>Entity diagram </b>
@@ -25,7 +25,7 @@ Soft delete is done via deletion_date column which indicates date deleted if it'
 <b>Database</b>
 H2 In memory database is used.
 
-Find table strucuture with json examples [here](https://git.hashedin.com/ganesh.jadhav/kotlin-assignment-2/-/blob/master/metadata/table_strucuture_with_examples.txt)
+Find table strucuture with json examples [here](https://github.com/Ganeshjadhav221b/SplitBill/blob/master/metadata/table_strucuture_with_examples.txt)
 
 <b>Tables</b>
 1. A user has to first create account(stored in user table).
